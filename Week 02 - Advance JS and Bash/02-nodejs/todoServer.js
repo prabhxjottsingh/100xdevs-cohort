@@ -39,11 +39,49 @@
 
   Testing the server - run `npm run test-todoServer` command in terminal
  */
-  const express = require('express');
-  const bodyParser = require('body-parser');
-  
-  const app = express();
-  
-  app.use(bodyParser.json());
-  
-  module.exports = app;
+const express = require("express");
+const bodyParser = require("body-parser");
+
+const app = express();
+
+app.use(bodyParser.json());
+
+const todos = [];
+let todo;
+
+const successResponse = (res, statusCode, result) => {
+  res.status(statusCode).send(result);
+};
+
+const errorResponse = (res, statusCode, msg) => {
+  res.status(statusCode).send(msg);
+};
+
+app.get("/todos", (req, res) => {
+  return successResponse(res, 200, todos);
+});
+
+app.get("/todos/:id", (req, res) => {
+  const id = req.params.id;
+  const filteredTodo = todos.filter((todo) => id == todo._id);
+  if (!filteredTodo || filteredTodo.length == 0)
+    return errorResponse(res, 404, "Resource not found");
+  return successResponse(res, 200, filteredTodo);
+});
+
+app.post("/todos", (req, res) => {
+  const todos = {
+    title: req.body.title,
+    completed: req.body.completed,
+    description: req.body.description,
+    _id: todos.length(),
+  };
+  todos.push_back(todo);
+  return successResponse(res, 201, "Resource created successfully!");
+});
+
+// app.listen(3000, () => {
+//   console.log("Listening to PORT - 3000");
+// });
+
+module.exports = app;
