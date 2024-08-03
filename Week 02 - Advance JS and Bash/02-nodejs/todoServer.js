@@ -47,13 +47,16 @@ const app = express();
 app.use(bodyParser.json());
 
 const todos = [];
-let todo;
 
 const successResponse = (res, statusCode, result) => {
   res.status(statusCode).send(result);
 };
 
-const errorResponse = (res, statusCode, msg) => {
+const errorResponse = (
+  res,
+  statusCode,
+  msg = "error while implementing the api"
+) => {
   res.status(statusCode).send(msg);
 };
 
@@ -63,25 +66,41 @@ app.get("/todos", (req, res) => {
 
 app.get("/todos/:id", (req, res) => {
   const id = req.params.id;
-  const filteredTodo = todos.filter((todo) => id == todo._id);
-  if (!filteredTodo || filteredTodo.length == 0)
-    return errorResponse(res, 404, "Resource not found");
+  const filteredTodo = todos.find((todo) => todo.id === parseInt(id));
+  if (!filteredTodo || filteredTodo.length == 0) return errorResponse(res, 404);
   return successResponse(res, 200, filteredTodo);
 });
 
 app.post("/todos", (req, res) => {
-  const todos = {
+  const newTodo = {
     title: req.body.title,
     completed: req.body.completed,
     description: req.body.description,
-    _id: todos.length(),
+    id: Math.round(Math.random() * 1000),
   };
-  todos.push_back(todo);
-  return successResponse(res, 201, "Resource created successfully!");
+  todos.push(newTodo);
+  return successResponse(res, 201, newTodo);
 });
 
-// app.listen(3000, () => {
-//   console.log("Listening to PORT - 3000");
-// });
+app.delete("/todos/:id", (req, res) => {
+  const id = req.params.id;
+  const todoIdx = todos.findIndex((todo) => todo.id === parseInt(id));
+  if (todoIdx) return errorResponse(res, 404);
+  todos.splice(todoIdx, 1);
+  return successResponse(res, 200);
+});
+
+app.put("/todos/:id", (req, res) => {
+  const id = req.params.id;
+  const todoIdx = todos.findIndex((todo) => todo.id === parseInt(id));
+  if (todoIdx) return errorResponse(res, 404);
+  todos[todoIdx].title = req.body.title;
+  todos[todoIdx].description = req.body.description;
+  return successResponse(res, 200, todos[todoIdx]);
+});
+
+app.use((req, res, next) => {
+  return errorResponse(res, 404);
+});
 
 module.exports = app;
