@@ -39,8 +39,8 @@
 
   Testing the server - run `npm run test-todoServer` command in terminal
  */
-const express = require("express");
-const bodyParser = require("body-parser");
+const express = require('express');
+const bodyParser = require('body-parser');
 
 const app = express();
 
@@ -55,23 +55,23 @@ const successResponse = (res, statusCode, result) => {
 const errorResponse = (
   res,
   statusCode,
-  msg = "error while implementing the api"
+  msg = 'error while implementing the api'
 ) => {
   res.status(statusCode).send(msg);
 };
 
-app.get("/todos", (req, res) => {
+app.get('/todos', (req, res) => {
   return successResponse(res, 200, todos);
 });
 
-app.get("/todos/:id", (req, res) => {
+app.get('/todos/:id', (req, res) => {
   const id = req.params.id;
-  const filteredTodo = todos.find((todo) => todo.id === parseInt(id));
+  const filteredTodo = todos.find(todo => todo.id === parseInt(id));
   if (!filteredTodo || filteredTodo.length == 0) return errorResponse(res, 404);
   return successResponse(res, 200, filteredTodo);
 });
 
-app.post("/todos", (req, res) => {
+app.post('/todos', (req, res) => {
   const newTodo = {
     title: req.body.title,
     completed: req.body.completed,
@@ -82,17 +82,17 @@ app.post("/todos", (req, res) => {
   return successResponse(res, 201, newTodo);
 });
 
-app.delete("/todos/:id", (req, res) => {
+app.delete('/todos/:id', (req, res) => {
   const id = req.params.id;
-  const todoIdx = todos.findIndex((todo) => todo.id === parseInt(id));
+  const todoIdx = todos.findIndex(todo => todo.id === parseInt(id));
   if (todoIdx) return errorResponse(res, 404);
   todos.splice(todoIdx, 1);
   return successResponse(res, 200);
 });
 
-app.put("/todos/:id", (req, res) => {
+app.put('/todos/:id', (req, res) => {
   const id = req.params.id;
-  const todoIdx = todos.findIndex((todo) => todo.id === parseInt(id));
+  const todoIdx = todos.findIndex(todo => todo.id === parseInt(id));
   if (todoIdx) return errorResponse(res, 404);
   todos[todoIdx].title = req.body.title;
   todos[todoIdx].description = req.body.description;

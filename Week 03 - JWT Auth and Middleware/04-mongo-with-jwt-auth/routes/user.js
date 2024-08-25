@@ -1,26 +1,26 @@
-const { Router } = require("express");
+const { Router } = require('express');
 const router = Router();
-const userMiddleware = require("../middleware/user");
+const userMiddleware = require('../middleware/user');
 
 // User Routes
 router.post('/signup', (req, res) => {
-    // Implement user signup logic
+  // Implement user signup logic
 });
 
 router.post('/signin', (req, res) => {
-    // Implement admin signup logic
+  // Implement admin signup logic
 });
 
 router.get('/courses', (req, res) => {
-    // Implement listing all courses logic
+  // Implement listing all courses logic
 });
 
 router.post('/courses/:courseId', userMiddleware, (req, res) => {
-    // Implement course purchase logic
+  // Implement course purchase logic
 });
 
 router.get('/purchasedCourses', userMiddleware, (req, res) => {
-    // Implement fetching purchased courses logic
+  // Implement fetching purchased courses logic
 });
 
-module.exports = router
+module.exports = router;

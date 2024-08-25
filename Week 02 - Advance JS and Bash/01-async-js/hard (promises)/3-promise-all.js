@@ -5,7 +5,7 @@
  */
 
 function wait1(t) {
-  return new Promise((resolve) => {
+  return new Promise(resolve => {
     setTimeout(() => {
       resolve();
     }, t * 1000);
@@ -13,7 +13,7 @@ function wait1(t) {
 }
 
 function wait2(t) {
-  return new Promise((resolve) => {
+  return new Promise(resolve => {
     setTimeout(() => {
       resolve();
     }, t * 1000);
@@ -21,7 +21,7 @@ function wait2(t) {
 }
 
 function wait3(t) {
-  return new Promise((resolve) => {
+  return new Promise(resolve => {
     setTimeout(() => {
       resolve();
     }, t * 1000);

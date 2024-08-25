@@ -1,5 +1,5 @@
-const jwt = require("jsonwebtoken");
-const jwtPassword = "secret";
+const jwt = require('jsonwebtoken');
+const jwtPassword = 'secret';
 
 function isValidEmail(email) {
   // Regular expression for basic email validation

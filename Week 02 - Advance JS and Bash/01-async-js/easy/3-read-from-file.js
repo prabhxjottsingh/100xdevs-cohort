@@ -48,50 +48,50 @@
 
 // console.log("Executed after reading the file")
 
-const fs = require("fs").promises
+const fs = require('fs').promises;
 
-const readingTheFile = async (filePath) => {
-    try {
-        const data = await fs.readFile(filePath, "utf-8")
-        return data
-    } catch (err) {
-        console.error("Error while reading the file:", err)
-    }
-}
+const readingTheFile = async filePath => {
+  try {
+    const data = await fs.readFile(filePath, 'utf-8');
+    return data;
+  } catch (err) {
+    console.error('Error while reading the file:', err);
+  }
+};
 
 const writingTheFile = async (filePath, data) => {
-    try {
-        await fs.writeFile(filePath, data)
-        console.log("File written successfully")
-    } catch (err) {
-        console.error("Error while writing the file:", err)
-    }
-}
+  try {
+    await fs.writeFile(filePath, data);
+    console.log('File written successfully');
+  } catch (err) {
+    console.error('Error while writing the file:', err);
+  }
+};
 
 // Simulate an expensive operation
-const expensiveOperation = (iterations) => {
-    console.log("Starting expensive operation")
-    let sum = 0
-    for (let i = 0; i < iterations; i++) {
-        sum += i
-    }
-    console.log("Completed expensive operation, sum:", sum)
-}
+const expensiveOperation = iterations => {
+  console.log('Starting expensive operation');
+  let sum = 0;
+  for (let i = 0; i < iterations; i++) {
+    sum += i;
+  }
+  console.log('Completed expensive operation, sum:', sum);
+};
 
 const main = async () => {
-    console.log("This is content")
+  console.log('This is content');
 
-    const filePath = "../easy/4-write-to-file.md"
-    const fileContent = await readingTheFile(filePath)
+  const filePath = '../easy/4-write-to-file.md';
+  const fileContent = await readingTheFile(filePath);
 
-    if (fileContent !== undefined) {
-        console.log("This is the content of the file:", fileContent)
+  if (fileContent !== undefined) {
+    console.log('This is the content of the file:', fileContent);
 
-        expensiveOperation(1e15) // Adjust the number of iterations for more or less expensive operation
-        await writingTheFile(filePath, fileContent + "PrabhjotSingh")
-    }
+    expensiveOperation(1e15); // Adjust the number of iterations for more or less expensive operation
+    await writingTheFile(filePath, fileContent + 'PrabhjotSingh');
+  }
 
-    console.log("Executed after reading the file")
-}
+  console.log('Executed after reading the file');
+};
 
-main()
+main();

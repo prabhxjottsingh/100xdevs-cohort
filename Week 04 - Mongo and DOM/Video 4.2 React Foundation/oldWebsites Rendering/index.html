@@ -1,0 +1,48 @@
+<html>
+  <script>
+    let id = 0;
+    function markAsDone(todoId) {
+      const parent = document.getElementById(todoId);
+      parent.children[2].innerHTML = 'Done';
+    }
+
+    function createChildDiv(title, desc) {
+      const childDiv = document.createElement('div');
+
+      const titleDiv = document.createElement('div');
+      titleDiv.innerHTML = title;
+
+      const descDiv = document.createElement('div');
+      descDiv.innerHTML = desc;
+
+      const markASDoneButton = document.createElement('button');
+      markASDoneButton.innerHTML = 'Mark as Done';
+      markASDoneButton.setAttribute('onclick', `markAsDone(${id})`);
+
+      childDiv.appendChild(titleDiv);
+      childDiv.appendChild(descDiv);
+      childDiv.appendChild(markASDoneButton);
+      childDiv.setAttribute('id', id++);
+      return childDiv;
+    }
+
+    function addTodo() {
+      const title = document.getElementById('title').value;
+      const desc = document.getElementById('description').value;
+
+      document
+        .getElementById('container')
+        .appendChild(createChildDiv(title, desc));
+    }
+  </script>
+  <div>
+    <input id="title" type="text" placeholder="title" />
+    <br />
+    <br />
+    <input id="description" type="text" placeholder="description" />
+    <br />
+    <br />
+    <button onclick="addTodo()">Add Todo</button>
+    <div id="container"></div>
+  </div>
+</html>

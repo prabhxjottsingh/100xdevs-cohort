@@ -5,7 +5,7 @@
  */
 
 function sleep(milliseconds) {
-  return new Promise((resolve) => {
+  return new Promise(resolve => {
     const end = Date.now() + milliseconds;
     while (Date.now() < end) {
       // Busy-wait loop

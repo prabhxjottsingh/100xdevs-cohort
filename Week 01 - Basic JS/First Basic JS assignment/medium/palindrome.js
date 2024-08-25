@@ -4,28 +4,28 @@
 */
 
 function isAlphaNumeric(char) {
-    return /[a-zA-Z0-9]/.test(char)
+  return /[a-zA-Z0-9]/.test(char);
 }
 
 function isPalindrome(str) {
-    let start = 0,
-        end = str.length - 1
-    while (start < end) {
-        if (str[start] === " " || !isAlphaNumeric(str[start])) {
-            start++
-            continue
-        }
-        if (str[end] === " " || !isAlphaNumeric(str[end])) {
-            end--
-            continue
-        }
-        if (str[start].toLowerCase() !== str[end].toLowerCase()) {
-            return false
-        }
-        start++
-        end--
+  let start = 0,
+    end = str.length - 1;
+  while (start < end) {
+    if (str[start] === ' ' || !isAlphaNumeric(str[start])) {
+      start++;
+      continue;
     }
-    return true
+    if (str[end] === ' ' || !isAlphaNumeric(str[end])) {
+      end--;
+      continue;
+    }
+    if (str[start].toLowerCase() !== str[end].toLowerCase()) {
+      return false;
+    }
+    start++;
+    end--;
+  }
+  return true;
 }
 
-module.exports = isPalindrome
+module.exports = isPalindrome;

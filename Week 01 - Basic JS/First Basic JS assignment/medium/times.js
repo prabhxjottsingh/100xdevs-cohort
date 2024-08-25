@@ -9,9 +9,9 @@ There is no automated test for this one, this is more for you to understand time
 */
 
 function calculateTime(n) {
-    console.log(Date.parse(new Date()))
-    for (let i = 0; i < n; i++) {}
-    console.log(Date.parse(new Date()))
+  console.log(Date.parse(new Date()));
+  for (let i = 0; i < n; i++) {}
+  console.log(Date.parse(new Date()));
 }
 
-calculateTime(100000000000)
+calculateTime(100000000000);

@@ -10,19 +10,18 @@
       }
 
       async function populateDiv() {
-        const elementOne = parseInt(document.getElementById("firstNum").value);
-        const elementTwo = parseInt(document.getElementById("secondNum").value);
+        const elementOne = parseInt(document.getElementById('firstNum').value);
+        const elementTwo = parseInt(document.getElementById('secondNum').value);
 
         const response = await fetch(
-          "http://127.0.0.1:8080/sum?a=" + elementOne + "&b=" + elementTwo
+          'http://127.0.0.1:8080/sum?a=' + elementOne + '&b=' + elementTwo
         );
         const respStr = JSON.parse(await response.text());
-        console.log("This is the resp: ", respStr.sum);
-        document.getElementById(
-          "finalSum"
-        ).innerHTML = `This is the sum of values ${elementOne}, and ${elementTwo}: ${respStr.sum}`;
-        console.log("First Num: ", elementOne);
-        console.log("Second Num: ", elementTwo);
+        console.log('This is the resp: ', respStr.sum);
+        document.getElementById('finalSum').innerHTML =
+          `This is the sum of values ${elementOne}, and ${elementTwo}: ${respStr.sum}`;
+        console.log('First Num: ', elementOne);
+        console.log('Second Num: ', elementTwo);
       }
     </script>
   </head>
