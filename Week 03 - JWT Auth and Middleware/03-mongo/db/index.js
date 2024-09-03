@@ -1,7 +1,13 @@
 const mongoose = require('mongoose');
 
+require('dotenv').config();
 // Connect to MongoDB
-mongoose.connect('mongodb+srv://prabhxjott:Prabh123@mongodbcluster0.kzqt5gg.mongodb.net/course_selling_app');
+mongoose
+  .connect(process.env.MONGODB_URL)
+  .then(() => {
+    console.log('Connected to mongoDB');
+  })
+  .catch(error => console.error('Error connecting to mongoDB: ', error));
 
 // Define schemas
 const AdminSchema = new mongoose.Schema({
